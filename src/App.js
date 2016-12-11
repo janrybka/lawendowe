@@ -93,37 +93,37 @@ class App extends Component {
           folder: 'pole_lawendy',          
           elements: [
             'pole_1',
-            'http://lawendowelove.pl/img/pole_lawendy/uprawa_2015_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/uprawa_22015_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/uprawa_32015_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_5_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_7_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_8_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_9_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_10b_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_11_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_12_small.jpg',
+            'uprawa_2015',
+            'uprawa_22015',
+            'uprawa_32015',
+            'pole_5',
+            'pole_7',
+            'pole_8',
+            'pole_9',
+            'pole_10b',
+            'pole_11',
+            'pole_12',
           ]
         },
         {
           id: 2, cover: 'http://lawendowelove.pl/img/general/lawenda.jpg',
           elements: [
-            'http://lawendowelove.pl/img/pole_lawendy/uprawa_22015_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_1_small.jpg',
+            'uprawa_22015',
+            'pole_1',
           ]
         },
         {
           id: 3, cover: 'http://lawendowelove.pl/img/general/lawenda.jpg',
           elements: [
-            'http://lawendowelove.pl/img/pole_lawendy/uprawa_2015_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/pole_1_small.jpg',
+            'uprawa_2015',
+            'pole_1',
           ]
         },
         {
           id: 4, cover: 'http://lawendowelove.pl/img/general/lawenda.jpg',
           elements: [
-            'http://lawendowelove.pl/img/pole_lawendy/uprawa_22015_small.jpg',
-            'http://lawendowelove.pl/img/pole_lawendy/uprawa_2015_small.jpg',
+            'uprawa_22015',
+            'uprawa_2015',
           ]
         },
       ],
