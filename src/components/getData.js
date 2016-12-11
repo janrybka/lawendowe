@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
     getData: function getData(url, success, error) {
         let xhr = new XMLHttpRequest();        
@@ -10,6 +8,7 @@ module.exports = {
                 if (xhr.status === 200) {                    
                     success(JSON.parse(xhr.responseText));
                 } else {
+                    // eslint-disable-next-line
                     throw "URL " + url + " returned non-200 status: " + xhr.status + ":" + xhr.statusText;
                 }
                 

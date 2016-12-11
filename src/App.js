@@ -1,124 +1,16 @@
 import React, { Component } from 'react';
-import dialogPolyfill from 'dialog-polyfill';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './App.css';
-import './img/plus_cursor.png';
-import * as query from './module/getData';
-
-class ImageCard extends Component {
-  // <ReactIntense src={this.props.fullUrl} thumbnail={this.props.thumbUrl}  caption={'caption'} title={'title'} />
-
-  componentDidMount() {
-    var element = document.querySelector('.mdl-cell--2-col #' + this.props.id);
-    window.Intense(element);
-  }
-  render() {
-    return (
-      <div className="mdl-cell mdl-cell--2-col">
-        <div className='imgCard' id={this.props.id}
-          style={{ background: 'url(' + this.props.thumbUrl + ') center / cover' }}
-          data-image={this.props.fullUrl}
-          data-title={"My beach adventure"}
-          data-caption={"Thanks Sam, for the great picture"} />
-      </div>
-    );
-  }
-}
-
-class GalleryCard extends Component {
-  render() {
-    return (
-      <div className={(this.props.onHideGallery != null) ? "mdl-cell mdl-cell--12-col" : "mdl-cell mdl-cell--4-col" }>
-        <div className="galleryCard mdl-card" style={{ background: 'url(' + this.props.item + ') center / cover' }}>
-          <div className="mdl-card__title mdl-card--expand">
-            <h2 className="mdl-card__title-text" ></h2>
-          </div>
-          <div className="mdl-card__actions">
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis asdf as  asd fdasdfasdf sadf  asffdf dsaf a sf fasdf
-            </span>
-            {
-              (this.props.onShowGallery != null) ? (
-                <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={() => this.props.onShowGallery()} >
-                  Zobacz galerię
-                </button>
-              ) : ""
-            }
-          </div>
-          {
-            (this.props.onHideGallery != null) ? (
-              <div className="mdl-card__menu">
-                <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--icon" onClick={() => this.props.onHideGallery()}>
-                  <i className="material-icons">close</i>
-                </button>
-              </div>
-            ) : ""
-          }
-        </div>
-      </div>
-    );
-  }
-}
-
-class GalleryBackButton extends Component {
-  render() {
-    return (
-      <div className="mdl-cell mdl-cell--12-col">
-        <div className='imgCard'>
-          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={() => this.props.onHideGallery()} >
-            Wróć do listy
-        </button>
-        </div>
-      </div>
-    );
-  }
-}
-
-class Dialog extends Component {
-  componentDidMount() {
-    let dialogDiv = document.querySelector('#galleryView');
-    if (!dialogDiv.showModal) {
-      dialogPolyfill.registerDialog(dialogDiv);
-    }
-    dialogDiv.showModal();
-  }
-  componentWillUnmount() {
-    let dialogDiv = document.querySelector('#galleryView');
-    dialogDiv.close();
-    //work arround is here!
-    document.querySelector('.mdl-layout__content').style.overflowX = 'auto';
-    document.querySelector('.mdl-layout__content').style.overflowX = '';
-    //work arround done!
-  }
-  render() {
-    return (
-      <ReactCSSTransitionGroup
-        transitionName="example"
-        transitionEnter={false}
-        transitionLeave={false}
-        transitionAppear={true}
-        transitionAppearTimeout={300}>
-        <dialog id='galleryView' className="mdl-dialog galleryDialog">
-          <div className="mdl-dialog__content">
-            <img src={this.props.img} />
-          </div>
-          <div className="mdl-dialog__actions">
-            <button type="button" className="mdl-button" onClick={() => this.props.onClose()}>Agree</button>
-          </div>
-        </dialog>
-      </ReactCSSTransitionGroup>
-    );
-  }
-}
-
+import * as query from './components/getData';
+import ImageCard, { GalleryBackButton } from './components/ImageCard';
+import GalleryCard, { GalleryCardType } from './components/GalleryCard';
 
 class App extends Component {
   constructor() {
     super();
     this.baseAddress = 'http://lawendowelove.pl/img/';
     this.state = {
-      choosenImg: null,
+      // choosenImg: null,
       selectedGallery: null,
       galleries: [],
     };
@@ -132,16 +24,17 @@ class App extends Component {
         alert(error);
       })
   }
-  zoomImage(img) {
-    this.setState({
-      choosenImg: img,
-    });
-  }
-  closeZoom() {
-    this.setState({
-      choosenImg: null,
-    });
-  }
+  // zoomImage(img) {
+  //   this.setState({
+  //     choosenImg: img,
+  //   });
+  // }
+  // closeZoom() {
+  //   this.setState({
+  //     choosenImg: null,
+  //   });
+  // }
+  // {this.state.choosenImg != null && <Dialog img={this.state.choosenImg} onClose={() => this.closeZoom()} />}
   showGallery(gallery) {
     this.setState({
       selectedGallery: gallery,
@@ -153,41 +46,70 @@ class App extends Component {
     });
   }
   render() {
-    var items = [];
-    if (this.state.selectedGallery == null) {
-      items = this.state.galleries.map((elem, idx) => (
-        <GalleryCard key={elem.id} item={elem.cover} onShowGallery={() => this.showGallery(elem)} onHideGallery={null} />
+    let navigationLinks = this.state.galleries.map((elem, idx) => (
+      <a key={elem.id} className="mdl-navigation__link" href={elem.id}>{elem.name}</a>
+    ));
+    let items = [];
+    let type = (this.state.selectedGallery == null) ? GalleryCardType.list : GalleryCardType.detailed; 
+    let galleries = (this.state.selectedGallery == null) ? this.state.galleries : [this.state.selectedGallery];
+    items = galleries.map((elem, idx) => (
+      <GalleryCard key={elem.id} 
+        item={elem.cover} 
+        title={elem.name} 
+        description={elem.description} 
+        type={type}
+        onToggleGallery={() => (type ===GalleryCardType.list) ? this.showGallery(elem) : this.hideGallery(elem)} />
+    ));
+    if (this.state.selectedGallery != null) {
+      let sg = this.state.selectedGallery;
+      var idx = this.state.galleries.indexOf(this.state.selectedGallery);
+      let detailImgs = sg.elements.map((elem, idx) => (
+        <ImageCard
+          key={elem.name}
+          id={'ic' + sg.id + "_" + elem.name}
+          thumbUrl={this.baseAddress + '/' + sg.folder + '/' + elem.name + '_small.jpg'}
+          fullUrl={this.baseAddress + '/' + sg.folder + '/' + elem.name + '_big.jpg'}
+          title={sg.name}
+          subtitle={elem.subtitle} />
       ));
-    } else
-      if (this.state.selectedGallery != null) {
-        var sg = this.state.selectedGallery;
-        var idx = this.state.galleries.indexOf(this.state.selectedGallery);
-        var detailImgs = this.state.selectedGallery.elements.map((elem, idx) => (
-          <ImageCard key={elem} id={'ic' + this.state.selectedGallery.id + "_" + elem}
-            thumbUrl={this.baseAddress + '/' + this.state.selectedGallery.folder + '/' + elem + '_small.jpg'}
-            fullUrl={this.baseAddress + '/' + this.state.selectedGallery.folder + '/' + elem + '_big.jpg'}
-            onShowDialog={() => this.zoomImage(elem)} />
-        ));
-        items = [
-          <GalleryCard key={sg.id} item={sg.cover} onShowGallery={null} onHideGallery={() => this.hideGallery(sg)} />
-        ];
-        items.splice(1, 0, detailImgs);
-        items.push(
-          <GalleryBackButton key={"backButton"} onHideGallery={() => this.hideGallery(sg)} />
-        );
-        //items.splice(idx+1, 0, detailImgs);
-      }
+      detailImgs.push(
+        <GalleryBackButton key={"backButton"} onHideGallery={() => this.hideGallery(sg)} />
+      );
+      //items.splice(idx+1, 0, detailImgs);
+      items.splice(1, 0, detailImgs);
+    }
     return (
-      <div className="App">
-        {this.state.choosenImg != null && <Dialog img={this.state.choosenImg} onClose={() => this.closeZoom()} />}
-        <div>
-          <ReactCSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={200} className="mdl-grid">
-            {items}
-          </ReactCSSTransitionGroup>
+      <div className="mdl-layout mdl-js-layout">
+        <div className='background'></div>
+        <header className="mdl-layout__header">
+          <div className="mdl-layout__header-row">
+            <span className="mdl-layout-title">LawendoweLove.pl</span>
+            <div className="mdl-layout-spacer"></div>
+          </div>
+        </header>
+        <div className="mdl-layout__drawer">
+          <span className="mdl-layout-title">Menu</span>
+          <nav className="mdl-navigation">
+            {navigationLinks}
+          </nav>
         </div>
+        <main className="mdl-layout__content">
+          <div className="page-content">
+            <div className="App">
+              <ReactCSSTransitionGroup
+                transitionName="example"
+                transitionEnterTimeout={300}
+                transitionLeave={false} className="mdl-grid">
+                {items}
+              </ReactCSSTransitionGroup>
+            </div>
+            <footer className="mdl-mini-footer">
+              <div className="mdl-mini-footer__left-section">
+                <div className="mdl-logo">LawendoweLove.pl -  2016 R4System.NET Jan Rybka</div>
+              </div>
+            </footer>
+          </div>
+        </main>
       </div>
     );
   }
