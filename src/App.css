@@ -2,10 +2,17 @@
   width: 90%;
   margin: auto;
 }
-.galleryCard {
+.galleryCard,
+.imgCard {
   width: 100%;
   margin: auto;
   height: 100%;
+}
+
+.imgCard {
+  min-height: 64px;
+}
+.galleryCard {
   min-height: 320px;
 }
 .galleryCard .mdl-card__actions {
@@ -23,10 +30,23 @@
   margin-bottom: 10px;
   color: #fff;
 }
+
+/*Dialog*/
+.galleryDialog {
+  width: 90%;
+  height: auto;
+}
+
+/*FIX for dialog in IE */
 ._dialog_overlay
 {
   z-index: 0 !important;   
 }
+
+
+
+/* Animations */
+
 .example-appear {
   opacity: 0.01;
 }
@@ -34,4 +54,22 @@
 .example-appear.example-appear-active {
   opacity: 1;
   transition: opacity .3s ease-in;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
