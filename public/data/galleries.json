@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "cover": "http://lawendowelove.pl/img/general/lawenda.jpg",
+    "folder": "pole_lawendy",
+    "elements": [ "pole_1",
+      "uprawa_2015",
+      "uprawa_22015",
+      "uprawa_32015",
+      "pole_5",
+      "pole_7",
+      "pole_8",
+      "pole_9",
+      "pole_10b",
+      "pole_11",
+      "pole_12",
+      "kosz_jesiennej_lawendy"
+    ]
+  },
+  {
+    "id": 2,
+    "cover": "http://lawendowelove.pl/img/poduszki/PODUSZKI_3.jpg",
+    "folder": "poduszki",
+    "elements": [
+      "poduszkabialapion"
+    ]
+  },
+  {
+    "id": 3,
+    "cover": "http://lawendowelove.pl/img/na_codzien/sorgo_zatrwian_2big.jpg",
+    "folder": "na_codzien",
+    "elements": [
+      "inne6",
+      "inne8",
+      "inne9"
+    ]
+  },
+  {
+    "id": 4,
+    "cover": "http://lawendowelove.pl/img/okazjonalne/boz4_big.jpg",
+    "folder": "okazjonalne",
+    "elements": [
+      "boz4",
+      "mech_kasztany",
+      "boz2",
+      "szyszki_jarzebina",
+      "jalowiec_srebrnahortensja"
+    ]
+  }
+]

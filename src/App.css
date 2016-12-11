@@ -11,6 +11,7 @@
 
 .imgCard {
   min-height: 64px;
+  cursor: url('./img/plus_cursor.png') 25 25, pointer;
 }
 .galleryCard {
   min-height: 320px;
@@ -62,7 +63,7 @@
 
 .example-enter.example-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 300ms ease-in;
 }
 
 .example-leave {
@@ -71,5 +72,5 @@
 
 .example-leave.example-leave-active {
   opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  transition: opacity 200ms ease-in;
 }
