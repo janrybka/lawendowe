@@ -3,8 +3,3 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-.background {
-  position: relative;
-  z-index: -1;
-  background: url(http://lawendowelove.pl/img/header/wianki2_lg.jpg) center / cover;
-}
