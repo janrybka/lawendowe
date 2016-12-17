@@ -1,8 +1,8 @@
 [
   {
-    "id": 1,
+    "folder": "pole_lawendy",
     "name": "Pole lawendy",
-    "cover": "http://lawendowelove.pl/img/general/lawenda.jpg",
+    "cover": "pole_1",
     "description": [
       "W swoim ogrodzie uprawiam kilka odmian lawendy wąskolistnej Lavandula angustifolia: ",
       "<ul>",
@@ -16,7 +16,6 @@
       "Sadzonki zakupione w renomowanej firmie ogrodniczej posadziłam w ilasto-piaszczystej glebie o odczynie zasadowym, uformowanej w wały (lawenda nie znosi zastoisk wodnych).",
       "Zimę,w warunkach klimatycznych Polski centralnej rośliny zniosły dobrze. Jedynie lawandynę, ze względu na niższą wytrzymałość na mrozy, okryłam na zimę włókniną."
     ],
-    "folder": "pole_lawendy",
     "elements": [ 
       {"name": "pole_1", "title":"Pole lawendy", "subtitle": "Piękne pole lawendy" },
       {"name": "uprawa_2015", "title":"Lawenda", "subtitle": "" },
@@ -33,19 +32,17 @@
     ]
   },
   {
-    "id": 2,
-    "name": "Poduszki",
-    "cover": "http://lawendowelove.pl/img/poduszki/PODUSZKI_3.jpg",
     "folder": "poduszki",
+    "name": "Poduszki",
+    "cover": "poduszkabialapion",
     "elements": [
       {"name": "poduszkabialapion", "title":"", "subtitle": "" }
     ]
   },
   {
-    "id": 3,
-    "name": "Na codzień",
-    "cover": "http://lawendowelove.pl/img/na_codzien/sorgo_zatrwian_2big.jpg",
     "folder": "na_codzien",
+    "name": "Na codzień",
+    "cover": "inne9",
     "elements": [
       {"name": "inne6", "title":"", "subtitle": "" },
       {"name": "inne8", "title":"", "subtitle": "" },
@@ -53,10 +50,9 @@
     ]
   },
   {
-    "id": 4,
-    "name": "Okazjonalne",
-    "cover": "http://lawendowelove.pl/img/okazjonalne/boz4_big.jpg",
     "folder": "okazjonalne",
+    "name": "Okazjonalne",
+    "cover": "boz4",
     "elements": [
       {"name": "boz4", "title":"", "subtitle": "" },
       {"name": "mech_kasztany", "title":"", "subtitle": "" },

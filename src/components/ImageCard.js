@@ -13,27 +13,25 @@ export default class ImageCard extends Component {
   //     {this.props.title}
   //   </span>
   // </div>
-  constructor() {
-    super();
-    this.state = {
-      loading: false,
-    }
-  }
   componentDidMount() {
-    var element = document.querySelector('#' + this.props.id);
+    let element = document.querySelector('#' + this.props.id);
     this.setupZoom(element);
     element.addEventListener('mouseover', () => { element.className = "imgCard mdl-card mdl-shadow--6dp"; });
     element.addEventListener('mouseout', () => { element.className = "imgCard mdl-card mdl-shadow--2dp"; });
   }
   setupZoom(element) {
-    var config = { 
+    var config = {
       imgClosed: () => { this.props.onZoomClosed() },
       loader: {
- 				start: function (){ document.querySelector('.overlay').style.display = 'block'; },
- 				stop: function (){ document.querySelector('.overlay').style.display = 'none'; }
+        start: function () {
+          document.querySelector('.overlay').style.display = 'block';
+        },
+        stop: function () {
+          document.querySelector('.overlay').style.display = 'none';
+        }
       }
     };
-    Intense.default( element, config );
+    Intense.default(element, config);
   }
   render() {
     return (
@@ -43,7 +41,7 @@ export default class ImageCard extends Component {
           data-image={this.props.fullUrl}
           data-title={this.props.title}
           data-caption={this.props.subtitle}
-          onClick={() => { this.state.loading === false && this.props.onZoomImage() } }
+          onClick={() => { this.props.onZoomImage() } }
           >
           <div className="mdl-card--expand"></div>
           <div className="mdl-card__actions">
