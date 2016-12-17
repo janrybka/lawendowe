@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { browserHistory } from 'react-router'
+import { hashHistory, Link } from 'react-router'
 import './App.css';
 import * as query from './components/getData';
 import ImageCard, { GalleryBackButton } from './components/ImageCard';
@@ -9,27 +9,24 @@ import GalleryCard, { GalleryCardType } from './components/GalleryCard';
 export default class App extends Component {
   constructor() {
     super();
-    this.baseAddress = 'http://lawendowelove.pl/img/';
+    this.imgBaseAddress = 'http://lawendowelove.pl/img/';
     this.state = {
       intro: true,
-      initGalleryId: null,
+      // selectedGalleryId: null,
       initImageId: null,
-      selectedGallery: null,
       galleries: null,
     };
   }
   componentDidMount() {
     this.setState({
       // route components are rendered with useful information, like URL params
-      initGalleryId: this.props.params.galleryId,
       initImageId: this.props.params.imageId,
     });
 
-    query.getData('/data/galleries.json',
+    query.getData(process.env.PUBLIC_URL + '/data/galleries.json',
       (data) => {
         this.setState({
           galleries: data,
-          selectedGallery: data.find(g => g.id === (Number)(this.state.initGalleryId)),
         });
         if (this.state.initImageId != null) {
           let selImg = document.getElementById(this.state.initImageId);
@@ -43,25 +40,31 @@ export default class App extends Component {
       })
   }
   showGallery(gallery) {
-    this.setState({
-      selectedGallery: gallery,
-    });
+    // this.setState({
+    //   selectedGalleryId: gallery.id,
+    // });
     const path=`/${gallery.id}`
-    browserHistory.push(path);
+    this.redirect(path);
   }
   hideGallery() {
-    this.setState({
-      selectedGallery: null,
-    });
-    browserHistory.push('/');
+    // this.setState({
+    //   selectedGalleryId: null,
+    // });
+    this.redirect('/');
   }
   zoomImage(id) {
-    const path=`/${this.state.selectedGallery.id}/${id}`
-    browserHistory.push(path);
+    const path=`/${this.props.params.galleryId}/${id}`
+    this.redirect(path);
   }
   zoomClosed(id) {
-    const path=`/${this.state.selectedGallery.id}`
-    browserHistory.push(path);
+    const path=`/${this.props.params.galleryId}`
+    this.redirect(path);
+  }
+  getUrl(path) {
+    return process.env.PUBLIC_URL + path;
+  }
+  redirect(path) {
+    hashHistory.push(this.getUrl(path));
   }
   renderGalleries() {
     if (this.state.galleries == null) {
@@ -71,8 +74,9 @@ export default class App extends Component {
     }
 
     let items = [];
-    let type = (this.state.selectedGallery == null) ? GalleryCardType.list : GalleryCardType.detailed;
-    let galleries = (this.state.selectedGallery == null) ? this.state.galleries : [this.state.selectedGallery];
+    let selectedGallery = this.state.galleries.find(g => g.id === (Number)(this.props.params.galleryId));
+    let type = (selectedGallery == null) ? GalleryCardType.list : GalleryCardType.detailed;
+    let galleries = (selectedGallery == null) ? this.state.galleries : [selectedGallery];
     items = galleries.map((elem, idx) => (
       <GalleryCard key={elem.id}
         item={elem.cover}
@@ -81,15 +85,15 @@ export default class App extends Component {
         type={type}
         onToggleGallery={() => (type === GalleryCardType.list) ? this.showGallery(elem) : this.hideGallery(elem)} />
     ));
-    if (this.state.selectedGallery != null) {
-      let sg = this.state.selectedGallery;
-      //var idx = this.state.galleries.indexOf(this.state.selectedGallery);
+    if (selectedGallery != null) {
+      let sg = selectedGallery;
+      //var idx = this.state.galleries.indexOf(selectedGallery);
       let detailImgs = sg.elements.map((elem, idx) => (
         <ImageCard
           key={elem.name}
           id={'ic' + sg.id + "_" + elem.name}
-          thumbUrl={this.baseAddress + '/' + sg.folder + '/' + elem.name + '_small.jpg'}
-          fullUrl={this.baseAddress + '/' + sg.folder + '/' + elem.name + '_big.jpg'}
+          thumbUrl={this.imgBaseAddress + '/' + sg.folder + '/' + elem.name + '_small.jpg'}
+          fullUrl={this.imgBaseAddress + '/' + sg.folder + '/' + elem.name + '_big.jpg'}
           title={sg.name}
           subtitle={elem.subtitle}
           onZoomImage={() => this.zoomImage('ic' + sg.id + "_" + elem.name)}
@@ -108,7 +112,7 @@ export default class App extends Component {
       return null;
     }
     let navigationLinks = this.state.galleries.map((elem, idx) => (
-      <a key={elem.id} className="mdl-navigation__link" href={elem.id}>{elem.name}</a>
+      <Link key={elem.id} className="mdl-navigation__link" to={"/" + elem.id}>{elem.name}</Link>
     ));
     return (
       <div className="mdl-layout__drawer mdl-layout__drawer--scroll">

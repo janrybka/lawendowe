@@ -2,6 +2,7 @@
   "name": "lawendowe",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://r4system.net/lawendowelove.pl-v2/",
   "devDependencies": {
     "react-scripts": "0.7.0"
   },
