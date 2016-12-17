@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { StickyContainer, Sticky } from 'react-sticky';
+import { browserHistory } from 'react-router'
 import './App.css';
 import * as query from './components/getData';
 import ImageCard, { GalleryBackButton } from './components/ImageCard';
 import GalleryCard, { GalleryCardType } from './components/GalleryCard';
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.baseAddress = 'http://lawendowelove.pl/img/';
     this.state = {
       intro: true,
+      initGalleryId: null,
+      initImageId: null,
       selectedGallery: null,
-      galleries: [],
+      galleries: null,
     };
-    query.getData('./data/galleries.json',
+  }
+  componentDidMount() {
+    this.setState({
+      // route components are rendered with useful information, like URL params
+      initGalleryId: this.props.params.galleryId,
+      initImageId: this.props.params.imageId,
+    });
+
+    query.getData('/data/galleries.json',
       (data) => {
         this.setState({
-          galleries: data
+          galleries: data,
+          selectedGallery: data.find(g => g.id === (Number)(this.state.initGalleryId)),
         });
+        if (this.state.initImageId != null) {
+          let selImg = document.getElementById(this.state.initImageId);
+          if (selImg !== null) {
+            selImg.click();
+          }
+        }
       },
       (error) => {
         alert(error);
@@ -29,13 +46,30 @@ class App extends Component {
     this.setState({
       selectedGallery: gallery,
     });
+    const path=`/${gallery.id}`
+    browserHistory.push(path);
   }
   hideGallery() {
     this.setState({
       selectedGallery: null,
     });
+    browserHistory.push('/');
+  }
+  zoomImage(id) {
+    const path=`/${this.state.selectedGallery.id}/${id}`
+    browserHistory.push(path);
+  }
+  zoomClosed(id) {
+    const path=`/${this.state.selectedGallery.id}`
+    browserHistory.push(path);
   }
   renderGalleries() {
+    if (this.state.galleries == null) {
+      return (
+        <div className="mdl-spinner mdl-js-spinner is-active"></div>
+      );
+    }
+
     let items = [];
     let type = (this.state.selectedGallery == null) ? GalleryCardType.list : GalleryCardType.detailed;
     let galleries = (this.state.selectedGallery == null) ? this.state.galleries : [this.state.selectedGallery];
@@ -57,7 +91,9 @@ class App extends Component {
           thumbUrl={this.baseAddress + '/' + sg.folder + '/' + elem.name + '_small.jpg'}
           fullUrl={this.baseAddress + '/' + sg.folder + '/' + elem.name + '_big.jpg'}
           title={sg.name}
-          subtitle={elem.subtitle} />
+          subtitle={elem.subtitle}
+          onZoomImage={() => this.zoomImage('ic' + sg.id + "_" + elem.name)}
+          onZoomClosed={() => this.zoomClosed('ic' + sg.id + "_" + elem.name) } />
       ));
       detailImgs.push(
         <GalleryBackButton key={"backButton"} onHideGallery={() => this.hideGallery(sg)} />
@@ -68,16 +104,19 @@ class App extends Component {
     return items;
   }
   renderNavigation() {
+    if (this.state.galleries == null) {
+      return null;
+    }
     let navigationLinks = this.state.galleries.map((elem, idx) => (
       <a key={elem.id} className="mdl-navigation__link" href={elem.id}>{elem.name}</a>
     ));
     return (
       <div className="mdl-layout__drawer mdl-layout__drawer--scroll">
-            <span className="mdl-layout-title">Menu</span>
-            <nav className="mdl-navigation">
-              {navigationLinks}
-            </nav>
-          </div>
+        <span className="mdl-layout-title">Menu</span>
+        <nav className="mdl-navigation">
+          {navigationLinks}
+        </nav>
+      </div>
     );
   }
   render() {
@@ -113,5 +152,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

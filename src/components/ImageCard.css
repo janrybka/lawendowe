@@ -5,6 +5,14 @@
   min-height: 200px;
   cursor: url('./../img/plus_cursor.png') 25 25, pointer;
 }
+.imgCard .mdl-card--expand {
+  background-color: rgba(0,0,0,0.2);
+  transition: background 200ms ease-in;
+}
+.imgCard:hover .mdl-card--expand {
+  background-color: rgba(0,0,0,0);
+  transition: background 200ms ease-in;
+}
 .imgCard .mdl-card__actions {
   height: 0px;
   padding: 0px;
