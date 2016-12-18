@@ -1,3 +1,7 @@
+// Pomocne: https://github.com/kshern/tiny-cli/blob/master/bin/tiny.js#L57
+// https://tinypng.com/developers/reference/nodejs
+// https://tinypng.com/dashboard/developers
+
 const fs = require('fs');
 let tinify = require("tinify");
 let cwait = require("cwait");
