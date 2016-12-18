@@ -16,49 +16,262 @@
       "Sadzonki zakupione w renomowanej firmie ogrodniczej posadziłam w ilasto-piaszczystej glebie o odczynie zasadowym, uformowanej w wały (lawenda nie znosi zastoisk wodnych).",
       "Zimę,w warunkach klimatycznych Polski centralnej rośliny zniosły dobrze. Jedynie lawandynę, ze względu na niższą wytrzymałość na mrozy, okryłam na zimę włókniną."
     ],
-    "elements": [ 
-      {"name": "pole_1", "title":"Pole lawendy", "subtitle": "Piękne pole lawendy" },
-      {"name": "uprawa_2015", "title":"Lawenda", "subtitle": "" },
-      {"name": "uprawa_22015", "title":"", "subtitle": "" },
-      {"name": "uprawa_32015", "title":"", "subtitle": "" },
-      {"name": "pole_5", "title":"", "subtitle": "" },
-      {"name": "pole_7", "title":"", "subtitle": "" },
-      {"name": "pole_8", "title":"", "subtitle": "" },
-      {"name": "pole_9", "title":"", "subtitle": "" },
-      {"name": "pole_10b", "title":"", "subtitle": "" },
-      {"name": "pole_11", "title":"", "subtitle": "" },
-      {"name": "pole_12", "title":"", "subtitle": "" },
-      {"name": "kosz_jesiennej_lawendy", "title":"", "subtitle": "" }
+    "elements": [
+      {
+        "name": "kosz_jesiennej_lawendy",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_1",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_10b",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_11",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_12",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_5",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_7",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_8",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "pole_9",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "uprawa_2015",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "uprawa_22015",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "uprawa_32015",
+        "title": "",
+        "subtitle": ""
+      }
     ]
   },
   {
     "folder": "poduszki",
     "name": "Poduszki",
-    "cover": "poduszkabialapion",
+    "cover": "PODUSZKI_3",
     "elements": [
-      {"name": "poduszkabialapion", "title":"", "subtitle": "" }
-    ]
-  },
-  {
-    "folder": "na_codzien",
-    "name": "Na codzień",
-    "cover": "inne9",
-    "elements": [
-      {"name": "inne6", "title":"", "subtitle": "" },
-      {"name": "inne8", "title":"", "subtitle": "" },
-      {"name": "inne9", "title":"", "subtitle": "" }
+      {
+        "name": "poduszkabialapion",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "poduszkakrempion",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "PODUSZKI_3",
+        "title": "",
+        "subtitle": ""
+      }
     ]
   },
   {
     "folder": "okazjonalne",
-    "name": "Okazjonalne",
-    "cover": "boz4",
+    "name": "Wianki okazjonalne",
+    "cover": "boz1",
     "elements": [
-      {"name": "boz4", "title":"", "subtitle": "" },
-      {"name": "mech_kasztany", "title":"", "subtitle": "" },
-      {"name": "boz2", "title":"", "subtitle": "" },
-      {"name": "szyszki_jarzebina", "title":"", "subtitle": "" },
-      {"name": "jalowiec_srebrnahortensja", "title":"", "subtitle": "" }
+      {
+        "name": "boz1",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "boz2",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "boz4",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "boz6",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "jalowiec_srebrnahortensja",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "mech",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "mech_kasztany",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "szyszki_jarzebina",
+        "title": "",
+        "subtitle": ""
+      }
+    ]
+  },
+  {
+    "folder": "boze_narodzenie",
+    "name": "Wianki na Boże Narodzenie",
+    "cover": "zloty",
+    "elements": [
+      {
+        "name": "fasetki2",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "jutanaturalna",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "jutanaturalna2",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "jutazielen",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "srebrnyfiolet",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "zloty",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "zloty2",
+        "title": "",
+        "subtitle": ""
+      }
+    ]
+  },
+  {
+    "folder": "na_codzien",
+    "name": "Wianki na codzień!",
+    "cover": "WWL2",
+    "elements": [
+      {
+        "name": "inne1",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "inne2",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "inne5",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "inne6",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "inne8",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "inne9",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "sorgo_roza",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "sorgo_zatrwian",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "WH5",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "WSZR1",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "WWL2",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "WZ4",
+        "title": "",
+        "subtitle": ""
+      },
+      {
+        "name": "zatrwianzielony_sorgo",
+        "title": "",
+        "subtitle": ""
+      }
+    ]
+  },
+  {
+    "folder": "mydelka",
+    "name": "Mydełka",
+    "cover": "mydelko",
+    "elements": [
+      {
+        "name": "mydelko",
+        "title": "",
+        "subtitle": ""
+      }
     ]
   }
 ]

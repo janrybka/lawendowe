@@ -9,7 +9,7 @@ import GalleryCard, { GalleryCardType } from './components/GalleryCard';
 export default class App extends Component {
   constructor() {
     super();
-    this.imgBaseAddress = 'http://lawendowelove.pl/img/';
+    this.imgBaseAddress = process.env.PUBLIC_URL + '/img/';
     this.state = {
       intro: true,
       // selectedGalleryId: null,
@@ -69,8 +69,8 @@ export default class App extends Component {
     let type = (selectedGallery == null) ? GalleryCardType.list : GalleryCardType.detailed;
     let galleries = (selectedGallery == null) ? this.state.galleries : [selectedGallery];
     items = galleries.map((elem, idx) => (
-      <GalleryCard key={elem.id}
-        item={this.imgBaseAddress + '/' + elem.folder + '/' + elem.cover + '_big.jpg'}
+      <GalleryCard key={elem.folder}
+        item={this.imgBaseAddress + '/' + elem.folder + (type === GalleryCardType.list ? '/min/' : '/big/') + elem.cover + '.jpg'}
         title={elem.name}
         description={elem.description}
         type={type}
@@ -82,8 +82,8 @@ export default class App extends Component {
         <ImageCard
           key={elem.name}
           id={'ic' + sg.folder + "_" + elem.name}
-          thumbUrl={this.imgBaseAddress + '/' + sg.folder + '/' + elem.name + '_small.jpg'}
-          fullUrl={this.imgBaseAddress + '/' + sg.folder + '/' + elem.name + '_big.jpg'}
+          thumbUrl={this.imgBaseAddress + '/' + sg.folder + '/min/' + elem.name + '.jpg'}
+          fullUrl={this.imgBaseAddress + '/' + sg.folder + '/big/' + elem.name + '.jpg'}
           title={sg.name}
           subtitle={elem.subtitle}
           onZoomImage={() => this.zoomImage('ic' + sg.folder + "_" + elem.name)}
@@ -108,7 +108,10 @@ export default class App extends Component {
       <div className="mdl-layout__drawer mdl-layout__drawer--scroll">
         <span className="mdl-layout-title">Menu</span>
         <nav className="mdl-navigation">
-          {navigationLinks}
+          <Link key="AboutMe" className="mdl-navigation__link" to={"/AboutMe"}>O mnie</Link>
+          <nav className="mdl-navigation">
+            {navigationLinks}
+          </nav>
         </nav>
       </div>
     );
