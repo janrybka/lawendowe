@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
 import './ImageCard.css';
 import './../img/plus_cursor.png';
+import * as Intense from './intense.js';
 
 export default class ImageCard extends Component {
   // <ReactIntense src={this.props.fullUrl} thumbnail={this.props.thumbUrl}  caption={'caption'} title={'title'} />
-          // <div className="mdl-card__title mdl-card--expand">
-          //   <h2 className="mdl-card__title-text" ></h2>
-          // </div>
-          // <div className="mdl-card__actions">
-          //   <span>
-          //     {this.props.title}
-          //   </span>
-          // </div>
-
+  // <div className="mdl-card__title mdl-card--expand">
+  //   <h2 className="mdl-card__title-text" ></h2>
+  // </div>
+  // <div className="mdl-card__actions">
+  //   <span>
+  //     {this.props.title}
+  //   </span>
+  // </div>
   componentDidMount() {
-    var element = document.querySelector('#' + this.props.id);
-    window.Intense(element);
+    let element = document.querySelector('#' + this.props.id);
+    this.setupZoom(element);
     element.addEventListener('mouseover', () => { element.className = "imgCard mdl-card mdl-shadow--6dp"; });
     element.addEventListener('mouseout', () => { element.className = "imgCard mdl-card mdl-shadow--2dp"; });
+  }
+  setupZoom(element) {
+    var config = {
+      imgClosed: () => { this.props.onZoomClosed() },
+      loader: {
+        start: function () {
+          document.querySelector('.overlay').style.display = 'block';
+        },
+        stop: function () {
+          document.querySelector('.overlay').style.display = 'none';
+        }
+      }
+    };
+    Intense.default(element, config);
   }
   render() {
     return (
@@ -27,7 +41,8 @@ export default class ImageCard extends Component {
           data-image={this.props.fullUrl}
           data-title={this.props.title}
           data-caption={this.props.subtitle}
-        >
+          onClick={() => { this.props.onZoomImage() } }
+          >
           <div className="mdl-card--expand"></div>
           <div className="mdl-card__actions">
             <span>{this.props.subtitle}</span>
