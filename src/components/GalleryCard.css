@@ -26,6 +26,17 @@
   color: #fff;
 }
 
+.galleryCardList {
+  cursor: pointer;
+}
+.galleryCardList .mdl-card--expand {
+  background-color: rgba(0,0,0,0.2);
+  transition: background 200ms ease-in;
+}
+.galleryCardList:hover .mdl-card--expand {
+  background-color: rgba(0,0,0,0);
+  transition: background 200ms ease-in;
+}
 .galleryCardDetailed {
   min-height: 460px;
 }

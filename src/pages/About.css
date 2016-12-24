@@ -1,0 +1,5 @@
+.mdl-cell iframe {
+  width: 100% !important;
+  height: 600px;
+  padding-top: 26px;
+}
