@@ -28,3 +28,14 @@ body {
   font-size: 25px;
   border-radius: 50%;
 }
+
+.img-responsive {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.pull-right {
+    float: right!important;
+}

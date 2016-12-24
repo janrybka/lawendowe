@@ -9,7 +9,7 @@ import * as query from './../components/getData';
 export default class Gallery extends Component {
   constructor() {
     super();
-    this.imgBaseAddress = process.env.PUBLIC_URL + '/img/';
+    this.imgBaseAddress = process.env.PUBLIC_URL + '/img/gallery/';
     this.state = {
       initImageId: null,
       galleries: null,
@@ -38,18 +38,22 @@ export default class Gallery extends Component {
       })
   }
   showGallery(gallery) {
-    const path=`/gallery/${gallery.folder}`
+    const path = `/gallery/${gallery.folder}`
     this.redirect(path);
+    var pageContent = document.querySelector(".mdl-layout__content");
+    if (pageContent != null) {
+      pageContent.scrollTop = 0;
+    }
   }
   hideGallery() {
     this.redirect('/gallery');
   }
   zoomImage(id) {
-    const path=`/gallery/${this.props.params.galleryFolder}/${id}`
+    const path = `/gallery/${this.props.params.galleryFolder}/${id}`
     this.redirect(path);
   }
   zoomClosed(id) {
-    const path=`/gallery/${this.props.params.galleryFolder}`
+    const path = `/gallery/${this.props.params.galleryFolder}`
     this.redirect(path);
   }
   redirect(path) {
@@ -85,7 +89,7 @@ export default class Gallery extends Component {
           title={sg.name}
           subtitle={elem.subtitle}
           onZoomImage={() => this.zoomImage('ic' + sg.folder + "_" + elem.name)}
-          onZoomClosed={() => this.zoomClosed('ic' + sg.folder + "_" + elem.name) } />
+          onZoomClosed={() => this.zoomClosed('ic' + sg.folder + "_" + elem.name)} />
       ));
       detailImgs.push(
         <GalleryBackButton key={"backButton"} onHideGallery={() => this.hideGallery(sg)} />

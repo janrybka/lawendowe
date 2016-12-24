@@ -34,12 +34,12 @@ export default class ImageCard extends Component {
     Intense.default(element, config);
   }
   render() {
+    //data-title={this.props.title}
     return (
       <div className="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone">
         <div className='imgCard mdl-card mdl-shadow--2dp' id={this.props.id}
           style={{ background: 'url(' + this.props.thumbUrl + ') center / cover' }}
-          data-image={this.props.fullUrl}
-          data-title={this.props.title}
+          data-image={this.props.fullUrl}          
           data-caption={this.props.subtitle}
           onClick={() => { this.props.onZoomImage() } }
           >

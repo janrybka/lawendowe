@@ -67,8 +67,8 @@ tinify.validate(function (err) {
         // }
         let resizeJob = source.resize({
           method: "fit",
-          width: 1000,
-          height: 700
+          width: 1900,
+          height: 1000
         }).toFile(bigPicFolder + file)
           .then(() => {
             console.log(`Zapis pełnego obrazu do pliku ${bigPicFolder + file} został zakończone`);
