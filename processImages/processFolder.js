@@ -1,11 +1,11 @@
-// Pomocne: https://github.com/kshern/tiny-cli/blob/master/bin/tiny.js#L57
+﻿// Pomocne: https://github.com/kshern/tiny-cli/blob/master/bin/tiny.js#L57
 // https://tinypng.com/developers/reference/nodejs
 // https://tinypng.com/dashboard/developers
 
 const fs = require('fs');
 let tinify = require("tinify");
-let cwait = require("cwait");
-let TaskQueue = cwait.TaskQueue;
+//let cwait = require("cwait");
+//let TaskQueue = cwait.TaskQueue;
 
 
 if (process.argv.length <= 3) {
@@ -21,16 +21,17 @@ tinify.validate(function (err) {
   console.log(`Podany klucz autoryzacyjny jest ok. Rozpoczynam tworzenie miniatur.`);
 
   const choosenFolder = process.argv[3];
+  const sourcePicFolder = choosenFolder + '/src/';
   const bigPicFolder = choosenFolder + '/big/';
   const minPicFolder = choosenFolder + '/min/';
   const optimazieBig = false;
-  fs.readdir(bigPicFolder, (err, files) => {
+  fs.readdir(sourcePicFolder, (err, files) => {
     if (err) {
-      console.log(`Folder '${bigPicFolder}' nie został znaleziony`);
+      console.log(`Folder '${sourcePicFolder}' nie został znaleziony`);
       console.log(err);
       return;
     }
-    let reg = /(\.jpg)|(\.png)$/;
+    let reg = /(\.jpg)$/; //|(\.png)
     filteredFiles = files.filter((file) => {
       console.log(file + " = " + ((reg.test(file) === true) ? "OK" : "nie"));
       return reg.test(file);
@@ -60,11 +61,7 @@ tinify.validate(function (err) {
       (file) => {
         console.log(`Rozpoczynam procesowanie pliku ${bigPicFolder + file}`);
 
-        let source = tinify.fromFile(bigPicFolder + file);
-        // if (optimazieBig) {
-        //   source.toFile(bigPicFolder + file);
-        //   console.log(`Nadpisanie zoptymalizowanego pliku ${bigPicFolder + file} zostało zakończone`);
-        // }
+        let source = tinify.fromFile(sourcePicFolder + file);
         let resizeJob = source.resize({
           method: "fit",
           width: 1900,
